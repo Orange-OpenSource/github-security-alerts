@@ -3,6 +3,12 @@
 # Automatic release script
 # Usage: ./release.sh 1.2.3
 
+echo "🔄 Pulling latest changes..."
+if ! git pull; then
+    echo "❌ Error: git pull failed"
+    exit 1
+fi
+
 if [ $# -eq 0 ]; then
     echo "❌ Usage: $0 <version>"
     echo "   Example: $0 1.2.3"
