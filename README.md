@@ -28,7 +28,7 @@ Why ? **This application is not code-signed** with a commercial certificate, whi
 
 Get the latest version of GitHub Security Alerts:
 
-- **[Download Latest Release](https://github.com/stephanebouget/github-security-alerts/releases/latest)**
+- **[Download Latest Release](https://github.com/Orange-OpenSource/github-security-alerts/releases/latest)**
 
 Available for Windows, macOS, and Linux.
 

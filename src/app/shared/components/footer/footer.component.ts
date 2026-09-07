@@ -29,7 +29,7 @@ export class FooterComponent {
   }
 
   openGitHub(): void {
-    const url = `https://github.com/stephanebouget/github-security-alerts`;
+    const url = `https://github.com/Orange-OpenSource/github-security-alerts`;
     this.tauriService.openExternalLink(url);
   }
 }

@@ -3,7 +3,7 @@
 ## ⚡ Quick Start
 
 ```bash
-git clone https://github.com/stephanebouget/github-security-alerts.git
+git clone https://github.com/Orange-OpenSource/github-security-alerts.git
 ```
 
 ```bash
