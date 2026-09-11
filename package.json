@@ -32,8 +32,8 @@
     "zone.js": "^0.16.3"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.23",
-    "@angular/cli": "^21.2.23",
+    "@angular/build": "^21.2.24",
+    "@angular/cli": "^21.2.24",
     "@angular/compiler-cli": "^21.2.23",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
