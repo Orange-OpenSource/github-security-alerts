@@ -6,11 +6,14 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '0 4 * * *' # run once a day at 4 AM
+    - cron: "0 4 * * *" # run once a day at 4 AM
 jobs:
   scan:
     name: gitleaks
-    runs-on: ubuntu-latest
+    runs-on:
+      ubuntu-latest
+      # Skip Dependabot PRs: they cannot read regular Actions secrets
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v4
         with:
