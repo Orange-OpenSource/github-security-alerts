@@ -1,6 +1,6 @@
 # GitHub Security Alerts
 
-👉 **Developers**: See [DEVELOP](./DEVELOP) | [CONTRIBUTING](./CONTRIBUTING)
+👉 **Developers**: See [DEVELOP](./DEVELOP.md) | [CONTRIBUTING](./CONTRIBUTING)
 
 A modern desktop application that monitors security vulnerabilities across your GitHub repositories in real-time. Built with Angular and Rust/Tauri for a lightweight, performant experience.
 
