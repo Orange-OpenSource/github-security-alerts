@@ -9,7 +9,7 @@
  * Software description: A modern desktop application that monitors security vulnerabilities across your GitHub repositories in real-time.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { RepoInfo, OwnerInfo } from '../../../core/services';
 
 export interface OwnerAccordion {
@@ -25,6 +25,7 @@ export interface OwnerAccordion {
   templateUrl: './repos-panel.component.html',
   styleUrls: ['./repos-panel.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class ReposPanelComponent {
   @Input() owners: OwnerAccordion[] = [];

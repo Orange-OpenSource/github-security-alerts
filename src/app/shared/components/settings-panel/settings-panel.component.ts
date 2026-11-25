@@ -9,7 +9,7 @@
  * Software description: A modern desktop application that monitors security vulnerabilities across your GitHub repositories in real-time.
  */
 
-import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
 import { TauriService, UpdateService } from '../../../core/services';
 
 @Component({
@@ -17,6 +17,7 @@ import { TauriService, UpdateService } from '../../../core/services';
   templateUrl: './settings-panel.component.html',
   styleUrls: ['./settings-panel.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class SettingsPanelComponent implements OnInit, OnDestroy {
   @Input() username: string | null = null;

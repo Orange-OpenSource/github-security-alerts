@@ -10,6 +10,7 @@
  */
 
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -26,6 +27,7 @@ type ViewMode = 'alerts' | 'repos' | 'settings';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() authenticated = false;

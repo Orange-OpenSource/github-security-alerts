@@ -9,7 +9,7 @@
  * Software description: A modern desktop application that monitors security vulnerabilities across your GitHub repositories in real-time.
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { APP_CONFIG } from '../environments/environment';
 import {
@@ -36,6 +36,7 @@ interface OwnerAccordion {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class AppComponent implements OnInit, OnDestroy {
   // Auth state

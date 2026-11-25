@@ -9,7 +9,7 @@
  * Software description: A modern desktop application that monitors security vulnerabilities across your GitHub repositories in real-time.
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { GitHubRateLimitService, GitHubRateLimits } from '../../../core/services';
 import { interval, Subscription } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -19,6 +19,7 @@ import { startWith, switchMap } from 'rxjs/operators';
   templateUrl: './rate-limit-status.component.html',
   styleUrls: ['./rate-limit-status.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class RateLimitStatusComponent implements OnInit, OnDestroy {
   rateLimits: GitHubRateLimits | null = null;
