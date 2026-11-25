@@ -60,6 +60,12 @@ Run tests:
 npm test
 ```
 
+Test release version handling:
+
+```bash
+node --test scripts/release-version.test.cjs
+```
+
 > [!NOTE]
 > Test coverage is currently limited. Contributions are welcome.
 
@@ -97,6 +103,14 @@ npm run tauri:bundle
 
 Output:
 src-tauri/target/release/bundle/
+
+## Release
+
+From a clean `main` working tree, run `./release.sh 1.2.3` with the new
+version. The script pulls the latest changes, checks and updates all release
+versions, then asks before creating the commit and tag. Push the commit and tag
+to start the release build. If canceled, the version changes remain uncommitted.
+The build checks that the tag matches the versions in the repository.
 
 ## 📁 Project Structure
 
