@@ -16,7 +16,12 @@ use tauri_plugin_updater::UpdaterExt;
 pub async fn check_for_updates(app_handle: AppHandle) -> Result<bool, String> {
     println!("[UPDATE] Starting update check...");
     
-    match app_handle.updater() {
+    // Reqwest unifies TLS features, so explicitly retain Rustls for the updater.
+    match app_handle
+        .updater_builder()
+        .configure_client(|client| client.tls_backend_rustls())
+        .build()
+    {
         Ok(updater) => {
             println!("[UPDATE] Updater initialized successfully");
             match updater.check().await {
@@ -59,7 +64,11 @@ pub async fn check_for_updates(app_handle: AppHandle) -> Result<bool, String> {
 
 #[tauri::command]
 pub async fn install_update(app_handle: AppHandle) -> Result<(), String> {
-    match app_handle.updater() {
+    match app_handle
+        .updater_builder()
+        .configure_client(|client| client.tls_backend_rustls())
+        .build()
+    {
         Ok(updater) => {
             match updater.check().await {
                 Ok(Some(update)) => {
