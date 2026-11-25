@@ -18,19 +18,50 @@ import { AlertsResponse, RepoInfo, TauriService, UpdateService } from './core/se
 import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
+  let tauri: jasmine.SpyObj<TauriService>;
+  let updateService: jasmine.SpyObj<UpdateService>;
+
   beforeEach(waitForAsync(() => {
+    tauri = jasmine.createSpyObj<TauriService>('TauriService', [
+      'getRefreshInterval',
+      'getAuthStatus',
+      'getToken',
+    ]);
+    tauri.getRefreshInterval.and.resolveTo(60);
+    tauri.getAuthStatus.and.resolveTo({ authenticated: false, username: null });
+    tauri.getToken.and.resolveTo(null);
+    updateService = jasmine.createSpyObj<UpdateService>('UpdateService', [
+      'startAutomaticUpdateCheck',
+      'stopAutomaticUpdateCheck',
+    ]);
+
     TestBed.configureTestingModule({
       declarations: [AppComponent],
-      providers: [TauriService],
-      imports: [RouterTestingModule, TranslateModule.forRoot()],
+      providers: [
+        { provide: TauriService, useValue: tauri },
+        { provide: UpdateService, useValue: updateService },
+      ],
+      imports: [RouterTestingModule, SharedModule, TranslateModule.forRoot()],
+      errorOnUnknownElements: true,
+      errorOnUnknownProperties: true,
     }).compileComponents();
   }));
 
-  it('should create the app', waitForAsync(() => {
+  it('should create the app', async () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
+    const initialized = new Promise<void>((resolve) => {
+      updateService.startAutomaticUpdateCheck.and.callFake(() => resolve());
+    });
+    fixture.detectChanges();
+    await initialized;
+
     expect(app).toBeTruthy();
-  }));
+    expect(tauri.getRefreshInterval).toHaveBeenCalled();
+    expect(tauri.getAuthStatus).toHaveBeenCalled();
+    expect(tauri.getToken).toHaveBeenCalled();
+    expect(updateService.startAutomaticUpdateCheck).toHaveBeenCalledWith(60);
+  });
 });
 
 describe('AppComponent async updates', () => {
@@ -63,6 +94,8 @@ describe('AppComponent async updates', () => {
         { provide: TauriService, useValue: tauri },
         { provide: UpdateService, useValue: updateService },
       ],
+      errorOnUnknownElements: true,
+      errorOnUnknownProperties: true,
     }).compileComponents();
   });
 

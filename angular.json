@@ -89,6 +89,13 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "*.woff2",
+                "input": "node_modules/@tabler/icons-webfont/dist/fonts",
+                "output": "base/media"
+              }
+            ],
             "styles": ["src/styles.scss"],
             "scripts": []
           }

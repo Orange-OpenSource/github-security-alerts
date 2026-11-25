@@ -70,7 +70,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private translate: TranslateService
   ) {
     translate.setFallbackLang('en');
-    console.log('APP_CONFIG', APP_CONFIG);
   }
 
   private async loadRefreshIntervalFromConfig(): Promise<void> {
